@@ -48,8 +48,6 @@ At the group level, the uVLT data appear to show a straightforward educational p
 
 More importantly, these profiles do not map neatly onto educational stages. Less advanced profiles remain among university learners, while some learners below high school display advanced profiles. Formal education is therefore associated with stronger vocabulary knowledge, but educational level alone does not adequately characterize what individual learners know.
 
-The visualizations move from the educational progression, to the variation hidden beneath group averages, and finally to the overlap between vocabulary profiles and educational stages.
-
 # Version A Scientific Article <br><br>Beyond Educational Level: Latent Profiles of Receptive Vocabulary Knowledge Across Frequency Levels
 
 ## Participants
@@ -205,7 +203,7 @@ fig3 <- ggplot(fig3_data, aes(x = education_label, y = percent,
 fig3
 ```
 
-As expected, Figure 3 shows more advanced profiles became more common at higher educational stages. However, all four profiles were represented in each educational group, indicating substantial variation in lexical knowledge among learners at the same educational stage.
+As expected, Figure 3 shows more advanced profiles became more common at higher educational stages. However, all four profiles were represented in each educational group, indicating substantial variation in lexical knowledge among learners at the same educational stage. Consequently, although years of schooling is associated with vocabulary knowledge, profile membership may better capture individual differences in lexical development, and may prove more informative for placement, diagnostic, and instructional decisions.
 
 # Version B: Accessible / Dynamic Outlet <br><br>What a vocabulary test shows about education and learning patterns
 ```{r}
@@ -223,16 +221,13 @@ prof_symbols <- c("circle", "square", "triangle-up", "diamond")
 base_font <- list(family = "Arial", size = 15, color = "#222222")
 x_title   <- "Word frequency level (most common → less common)"
 ```
-We might expect language learners at higher educational stages to have stronger English vocabulary knowledge. We would also expect language learners to know more common words better than less common ones, because higher-frequency words are encountered more often and are generally learned earlier.
+We might expect language learners with more education to have stronger English vocabulary knowledge. We would also expect them to know common words better than rarer ones. Common words such as *house*, *money*, and *friend* appear everywhere, so learners may meet them often and usually learn them early. Rarer words such as *verdict* or *sediment* appear far less often, so they may take longer to learn.
 
 But how well do these expectations match what learners actually know? Do people with more education generally know more English words? And how much does it matter whether those words are common or less common?
 
 To find out, we looked at vocabulary test results from `r nrow(data)` English learners in China with different educational backgrounds. The test covers five groups of words, ranging from the 1000 most common word families in English to the 5000 most common.
 
 We start with the overall picture: How does vocabulary knowledge vary by educational stage and word frequency?
-
-## How to read the charts
-The test groups words by how common they are. The **1000 level** contains the 1000 most common English words. The **2000 level** contains the next 1000, and so on up to the **5000 level**. Each level has **30 test items**, so a score of 30 means a learner knew every word tested at that level. Hover over any point or bar to see the exact numbers.
 
 ## More schooling, more words
 
@@ -364,11 +359,23 @@ b2
 *Chart summary: The four profiles differ in where scores drop. Advanced learners stay high at every level, while Beginner learners drop sharply after the most common 1000 words.*
 
 Each profile tells a different learning story:
+```{r}
+#| include: false
+prof_mean <- function(p, l) {
+  round(b2_data$mean[b2_data$profile == p & b2_data$level == l])
+}
 
-- **Advanced** (22% of learners) know almost every word tested. Even at the 5000 level, they still know about **27 of 30** words.
-- **Intermediate** (26%) know nearly all common words. Their scores then fall steadily to about **18 of 30** at the 5000 level.
-- **Elementary** (32%) start strong but drop soon after the first 1000 words. They reach about **12 of 30** at the 5000 level.
-- **Beginner** (19%) know about **23 of 30** of the most common words. Beyond that, their scores fall quickly, to about **13 of 30** at the 2000 level and about **6** at the 5000 level.
+prof_pct <- data %>%
+  filter(!is.na(profile)) %>%
+  count(profile) %>%
+  mutate(pct = round(n / sum(n) * 100))
+
+pct <- function(p) prof_pct$pct[prof_pct$profile == p]
+```
+- **Advanced** (`r pct("advanced")`% of learners) know almost every word tested. Even at the 5000 level, they still know about **`r prof_mean("Advanced", "5000")` of 30** words.
+- **Intermediate** (`r pct("intermediate")`%) know nearly all common words. Their scores then fall steadily to about **`r prof_mean("Intermediate", "5000")` of 30** at the 5000 level.
+- **Elementary** (`r pct("elementary")`%) start strong but drop soon after the first 1000 words. They reach about **`r prof_mean("Elementary", "5000")` of 30** at the 5000 level.
+- **Beginner** (`r pct("beginner")`%) know about **`r prof_mean("Beginner", "1000")` of 30** of the most common words. Beyond that, their scores fall quickly, to about **`r prof_mean("Beginner", "2000")` of 30** at the 2000 level and about **`r prof_mean("Beginner", "5000")`** at the 5000 level.
 
 ## The same education level, very different vocabularies
 
