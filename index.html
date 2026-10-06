@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Wanying Lu">
+<meta name="dcterms.date" content="2026-10-06">
+
+<title>Data Vis Project</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="index_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="index_files/libs/quarto-html/anchor.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="index_files/libs/bootstrap/bootstrap-917079515d91bccb85b543faf8aa8bb6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="index_files/libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="index_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="index_files/libs/plotly-binding-4.12.0/plotly.js"></script>
+<script src="index_files/libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="index_files/libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="index_files/libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="index_files/libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="index_files/libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="index_files/libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+<link href="index_files/libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="index_files/libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#story-summary" id="toc-story-summary" class="nav-link active" data-scroll-target="#story-summary">Story Summary</a></li>
+  <li><a href="#version-a-scientific-article-beyond-educational-level-latent-profiles-of-receptive-vocabulary-knowledge-across-frequency-levels" id="toc-version-a-scientific-article-beyond-educational-level-latent-profiles-of-receptive-vocabulary-knowledge-across-frequency-levels" class="nav-link" data-scroll-target="#version-a-scientific-article-beyond-educational-level-latent-profiles-of-receptive-vocabulary-knowledge-across-frequency-levels">Version A Scientific Article <br><br>Beyond Educational Level: Latent Profiles of Receptive Vocabulary Knowledge Across Frequency Levels</a>
+  <ul class="collapse">
+  <li><a href="#participants" id="toc-participants" class="nav-link" data-scroll-target="#participants">Participants</a></li>
+  <li><a href="#measure" id="toc-measure" class="nav-link" data-scroll-target="#measure">Measure</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a></li>
+  <li><a href="#results-and-discussions" id="toc-results-and-discussions" class="nav-link" data-scroll-target="#results-and-discussions">Results and Discussions</a></li>
+  </ul></li>
+  <li><a href="#version-b-accessible-dynamic-outlet-what-a-vocabulary-test-shows-about-education-and-learning-patterns" id="toc-version-b-accessible-dynamic-outlet-what-a-vocabulary-test-shows-about-education-and-learning-patterns" class="nav-link" data-scroll-target="#version-b-accessible-dynamic-outlet-what-a-vocabulary-test-shows-about-education-and-learning-patterns">Version B: Accessible / Dynamic Outlet <br><br>What a vocabulary test shows about education and learning patterns</a>
+  <ul class="collapse">
+  <li><a href="#how-to-read-the-charts" id="toc-how-to-read-the-charts" class="nav-link" data-scroll-target="#how-to-read-the-charts">How to read the charts</a></li>
+  <li><a href="#more-schooling-more-words" id="toc-more-schooling-more-words" class="nav-link" data-scroll-target="#more-schooling-more-words">More schooling, more words</a></li>
+  <li><a href="#education-is-not-the-whole-story" id="toc-education-is-not-the-whole-story" class="nav-link" data-scroll-target="#education-is-not-the-whole-story">Education is not the whole story</a></li>
+  <li><a href="#the-same-education-level-very-different-vocabularies" id="toc-the-same-education-level-very-different-vocabularies" class="nav-link" data-scroll-target="#the-same-education-level-very-different-vocabularies">The same education level, very different vocabularies</a></li>
+  <li><a href="#what-this-means" id="toc-what-this-means" class="nav-link" data-scroll-target="#what-this-means">What this means</a></li>
+  <li><a href="#data-source-note" id="toc-data-source-note" class="nav-link" data-scroll-target="#data-source-note">Data Source Note</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data Vis Project</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Wanying Lu </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 6, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="story-summary" class="level1">
+<h1>Story Summary</h1>
+<p>Second language (L2) English vocabulary knowledge is expected to increase as learners progress through formal education. The Updated Vocabulary Levels Test (uVLT) measures learners’ knowledge of English words across five frequency levels, from the most frequent 1000 word families to the most frequent 5000 word families.</p>
+<p>At the group level, the uVLT data appear to show a straightforward educational progression: learners at higher educational stages generally perform better across frequency levels. However, these averages tell only part of the story. When learners are grouped according to their patterns of vocabulary knowledge across the five frequency levels, four distinct lexical profiles emerge, revealing substantial differences hidden by educational averages.</p>
+<p>More importantly, these profiles do not map neatly onto educational stages. Less advanced profiles remain among university learners, while some learners below high school display advanced profiles. Formal education is therefore associated with stronger vocabulary knowledge, but educational level alone does not adequately characterize what individual learners know.</p>
+<p>The visualizations move from the educational progression, to the variation hidden beneath group averages, and finally to the overlap between vocabulary profiles and educational stages.</p>
+</section>
+<section id="version-a-scientific-article-beyond-educational-level-latent-profiles-of-receptive-vocabulary-knowledge-across-frequency-levels" class="level1">
+<h1>Version A Scientific Article <br><br>Beyond Educational Level: Latent Profiles of Receptive Vocabulary Knowledge Across Frequency Levels</h1>
+<section id="participants" class="level2">
+<h2 class="anchored" data-anchor-id="participants">Participants</h2>
+<p>The data were collected from 1500 English as a foreign language (EFL) learners in China who completed the Updated Vocabulary Levels Test (uVLT). Participants represented three educational groups: learners with less than a high school education (n = 500), those with a high school education or equivalent (n = 500), and those with a four-year college degree (n = 500).</p>
+</section>
+<section id="measure" class="level2">
+<h2 class="anchored" data-anchor-id="measure">Measure</h2>
+<p>Vocabulary knowledge was assessed using the Updated Vocabulary Levels Test (uVLT), a frequency-based measure of English vocabulary knowledge. The test assesses knowledge at five frequency levels, representing the 1000, 2000, 3000, 4000, and 5000 most frequent word families in English. Each level contains 30 items.</p>
+</section>
+<section id="analysis" class="level2">
+<h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
+<p>The analysis examined vocabulary knowledge from two perspectives. First, mean uVLT scores across the five frequency levels were compared across the three educational groups. Second, learners were classified according to their patterns of performance across the five frequency levels using latent profile analysis (LPA). The resulting four lexical profiles—beginner, elementary, intermediate, and advanced—were then compared across educational groups to determine whether patterns of lexical knowledge corresponded closely to educational stage.</p>
+</section>
+<section id="results-and-discussions" class="level2">
+<h2 class="anchored" data-anchor-id="results-and-discussions">Results and Discussions</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As Figure 1 shows, mean uVLT performance showed a general educational progression, with learners at higher educational stages tending to achieve higher scores across the five frequency levels. Across educational groups, scores also declined from the 1000- to the 5000-word frequency level, reflecting weaker knowledge of progressively lower-frequency vocabulary.</p>
+<p>These group-level patterns, however, describe only the average learner within each educational group. Some variation among learners at the same educational stage is expected, but group means do not show the extent of this variation or whether learners exhibit systematically different patterns of lexical knowledge across frequency levels.</p>
+<p>Latent profile analysis (LPA) provided a different perspective by grouping learners according to similarities in their performance across the five vocabulary frequency levels, rather than their educational stage. Four profiles emerged, as shown in Figure 2, ranging from beginner to advanced patterns of lexical knowledge. This suggests that the variation within educational groups is not simply random individual variation but can be characterized by distinct patterns of lexical knowledge.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The next question is how closely these profiles correspond to educational stage. Although some overlap across educational groups is expected, the extent of this overlap indicates how well educational stage differentiates learners with different patterns of lexical knowledge. Examining the distribution of the four profiles across educational groups therefore provides a more detailed picture of the relationship between formal education and vocabulary knowledge.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As expected, Figure 3 shows more advanced profiles became more common at higher educational stages. However, all four profiles were represented in each educational group, indicating substantial variation in lexical knowledge among learners at the same educational stage.</p>
+</section>
+</section>
+<section id="version-b-accessible-dynamic-outlet-what-a-vocabulary-test-shows-about-education-and-learning-patterns" class="level1">
+<h1>Version B: Accessible / Dynamic Outlet <br><br>What a vocabulary test shows about education and learning patterns</h1>
+<p>We might expect language learners at higher educational stages to have stronger English vocabulary knowledge. We would also expect language learners to know more common words better than less common ones, because higher-frequency words are encountered more often and are generally learned earlier.</p>
+<p>But how well do these expectations match what learners actually know? Do people with more education generally know more English words? And how much does it matter whether those words are common or less common?</p>
+<p>To find out, we looked at vocabulary test results from 1500 English learners in China with different educational backgrounds. The test covers five groups of words, ranging from the 1000 most common word families in English to the 5000 most common.</p>
+<p>We start with the overall picture: How does vocabulary knowledge vary by educational stage and word frequency?</p>
+<section id="how-to-read-the-charts" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-read-the-charts">How to read the charts</h2>
+<p>The test groups words by how common they are. The <strong>1000 level</strong> contains the 1000 most common English words. The <strong>2000 level</strong> contains the next 1000, and so on up to the <strong>5000 level</strong>. Each level has <strong>30 test items</strong>, so a score of 30 means a learner knew every word tested at that level. Hover over any point or bar to see the exact numbers.</p>
+</section>
+<section id="more-schooling-more-words" class="level2">
+<h2 class="anchored" data-anchor-id="more-schooling-more-words">More schooling, more words</h2>
+<p>Almost every learner knows the most common English words. At the 1000 level, university learners score only about <strong>2 points higher</strong> than learners below high school, out of 30.</p>
+<p>The picture changes as the words become rarer. Scores drop for every group, but they drop fastest for learners below high school. By the 5000 level, the gap between the two groups has grown to about <strong>7 points</strong>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-dd36fc0ed4ffb8b95c58" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-dd36fc0ed4ffb8b95c58">{"x":{"visdat":{"7a793b0288ef":["function () ","plotlyVisDat"],"7a79236c212d":["function () ","data"],"7a79ff62386":["function () ","data"],"7a7968963a99":["function () ","data"]},"cur_data":"7a7968963a99","attrs":{"7a79236c212d":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines+markers","name":"Below high school","line":{"color":"#D55E00","width":3},"marker":{"color":"#D55E00","size":11,"symbol":"circle"},"hovertemplate":{},"inherit":true},"7a79ff62386":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines+markers","name":"High school","line":{"color":"#009E73","width":3},"marker":{"color":"#009E73","size":11,"symbol":"triangle-up"},"hovertemplate":{},"inherit":true},"7a7968963a99":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines+markers","name":"University","line":{"color":"#0072B2","width":3},"marker":{"color":"#0072B2","size":11,"symbol":"square"},"hovertemplate":{},"inherit":true}},"layout":{"margin":{"b":60,"l":60,"t":60,"r":20},"title":{"text":"<b>More schooling, more words, especially the rarer ones<\/b>","x":0,"xanchor":"left"},"font":{"family":"Arial","size":15,"color":"#222222"},"showlegend":false,"xaxis":{"domain":[0,1],"automargin":true,"title":"Word frequency level (most common → less common)","range":[-0.40000000000000002,5.5999999999999996],"type":"category","categoryorder":"array","categoryarray":["1000","2000","3000","4000","5000"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Average words known (out of 30)","range":[0,31],"dtick":5,"gridcolor":"#e5e5e5"},"annotations":[{"x":4,"y":12.197999999999999,"text":"<b>Below high school<\/b>","xanchor":"left","xshift":14,"showarrow":false,"font":{"size":15,"color":"#D55E00"}},{"x":4,"y":15.754,"text":"<b>High school<\/b>","xanchor":"left","xshift":14,"showarrow":false,"font":{"size":15,"color":"#009E73"}},{"x":4,"y":18.963999999999999,"text":"<b>University<\/b>","xanchor":"left","xshift":14,"showarrow":false,"font":{"size":15,"color":"#0072B2"}},{"x":0,"y":26.574000000000002,"text":"Common words:<br>small gap (2.3 points)","showarrow":true,"arrowhead":2,"ax":40,"ay":70,"font":{"size":14}},{"x":4,"y":12.197999999999999,"text":"Rarer words:<br>gap grows to 6.8 points","showarrow":true,"arrowhead":2,"ax":-90,"ay":60,"font":{"size":14}}],"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displayModeBar":false},"data":[{"x":["1000","2000","3000","4000","5000"],"y":[26.574000000000002,20.991999999999997,15.943999999999999,14.144,12.197999999999999],"type":"scatter","mode":"lines+markers","name":"Below high school","line":{"color":"#D55E00","width":3},"marker":{"color":"#D55E00","size":11,"symbol":"circle","line":{"color":"rgba(31,119,180,1)"}},"hovertemplate":["<b>Below high school<\/b><br>1000 level<br>Average: 26.6 of 30 words (89%)<extra><\/extra>","<b>Below high school<\/b><br>2000 level<br>Average: 21 of 30 words (70%)<extra><\/extra>","<b>Below high school<\/b><br>3000 level<br>Average: 15.9 of 30 words (53%)<extra><\/extra>","<b>Below high school<\/b><br>4000 level<br>Average: 14.1 of 30 words (47%)<extra><\/extra>","<b>Below high school<\/b><br>5000 level<br>Average: 12.2 of 30 words (41%)<extra><\/extra>"],"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["1000","2000","3000","4000","5000"],"y":[28.844000000000001,26.062000000000001,22.526,18.847999999999999,15.754],"type":"scatter","mode":"lines+markers","name":"High school","line":{"color":"#009E73","width":3},"marker":{"color":"#009E73","size":11,"symbol":"triangle-up","line":{"color":"rgba(255,127,14,1)"}},"hovertemplate":["<b>High school<\/b><br>1000 level<br>Average: 28.8 of 30 words (96%)<extra><\/extra>","<b>High school<\/b><br>2000 level<br>Average: 26.1 of 30 words (87%)<extra><\/extra>","<b>High school<\/b><br>3000 level<br>Average: 22.5 of 30 words (75%)<extra><\/extra>","<b>High school<\/b><br>4000 level<br>Average: 18.8 of 30 words (63%)<extra><\/extra>","<b>High school<\/b><br>5000 level<br>Average: 15.8 of 30 words (53%)<extra><\/extra>"],"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["1000","2000","3000","4000","5000"],"y":[28.880000000000003,26.738,24.437999999999999,21.707999999999998,18.963999999999999],"type":"scatter","mode":"lines+markers","name":"University","line":{"color":"#0072B2","width":3},"marker":{"color":"#0072B2","size":11,"symbol":"square","line":{"color":"rgba(44,160,44,1)"}},"hovertemplate":["<b>University<\/b><br>1000 level<br>Average: 28.9 of 30 words (96%)<extra><\/extra>","<b>University<\/b><br>2000 level<br>Average: 26.7 of 30 words (89%)<extra><\/extra>","<b>University<\/b><br>3000 level<br>Average: 24.4 of 30 words (81%)<extra><\/extra>","<b>University<\/b><br>4000 level<br>Average: 21.7 of 30 words (72%)<extra><\/extra>","<b>University<\/b><br>5000 level<br>Average: 19 of 30 words (63%)<extra><\/extra>"],"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p><em>Chart summary: Scores fall for all three education groups as words become rarer. Learners below high school drop the fastest, so the gap between the groups is small for common words and large for rarer words.</em></p>
+<p>So education matters. But averages can hide a lot. Within each education group, some learners may know far more words than others.</p>
+</section>
+<section id="education-is-not-the-whole-story" class="level2">
+<h2 class="anchored" data-anchor-id="education-is-not-the-whole-story">Education is not the whole story</h2>
+<p>To look past the averages, we grouped the same learners a second way. Instead of their education, we looked at <strong>the shape of what they know</strong>: where their scores stay high, and where they start to drop.</p>
+<p>A statistical method called <strong>latent profile analysis</strong> found four groups of learners with similar score patterns. We call them <strong>vocabulary profiles</strong>. Use the buttons above the chart to look at one profile at a time.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-38412092c7d1d634e6ad" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-38412092c7d1d634e6ad">{"x":{"visdat":{"7a79291c37a7":["function () ","plotlyVisDat"],"7a797b89ca06":["function () ","data"],"7a79132e8f47":["function () ","data"],"7a7955c08827":["function () ","data"],"7a79532ae46c":["function () ","data"]},"cur_data":"7a79532ae46c","attrs":{"7a797b89ca06":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines+markers","name":"Advanced","line":{"color":"#0D0887","width":3},"marker":{"color":"#0D0887","size":11,"symbol":"circle"},"hovertemplate":{},"inherit":true},"7a79132e8f47":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines+markers","name":"Intermediate","line":{"color":"#7E03A8","width":3},"marker":{"color":"#7E03A8","size":11,"symbol":"square"},"hovertemplate":{},"inherit":true},"7a7955c08827":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines+markers","name":"Elementary","line":{"color":"#CC4778","width":3},"marker":{"color":"#CC4778","size":11,"symbol":"triangle-up"},"hovertemplate":{},"inherit":true},"7a79532ae46c":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines+markers","name":"Beginner","line":{"color":"#F89540","width":3},"marker":{"color":"#F89540","size":11,"symbol":"diamond"},"hovertemplate":{},"inherit":true}},"layout":{"margin":{"b":60,"l":60,"t":100,"r":20},"title":{"text":"<b>Learners fall into four distinct vocabulary patterns<\/b>","x":0,"xanchor":"left","y":0.97999999999999998},"font":{"family":"Arial","size":15,"color":"#222222"},"showlegend":false,"xaxis":{"domain":[0,1],"automargin":true,"title":"Word frequency level (most common → less common)","range":[-0.40000000000000002,5.2999999999999998],"type":"category","categoryorder":"array","categoryarray":["1000","2000","3000","4000","5000"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Average words known (out of 30)","range":[0,31],"dtick":5,"gridcolor":"#e5e5e5"},"annotations":[{"x":4,"y":26.532738095238095,"text":"<b>Advanced<\/b>","xanchor":"left","xshift":14,"showarrow":false,"font":{"size":15,"color":"#0D0887"}},{"x":4,"y":18.012626262626259,"text":"<b>Intermediate<\/b>","xanchor":"left","xshift":14,"showarrow":false,"font":{"size":15,"color":"#7E03A8"}},{"x":4,"y":11.755186721991702,"text":"<b>Elementary<\/b>","xanchor":"left","xshift":14,"showarrow":false,"font":{"size":15,"color":"#CC4778"}},{"x":4,"y":6.0979020979020984,"text":"<b>Beginner<\/b>","xanchor":"left","xshift":14,"showarrow":false,"font":{"size":15,"color":"#F89540"}}],"updatemenus":[{"type":"buttons","direction":"right","x":0,"y":1.02,"xanchor":"left","yanchor":"bottom","showactive":true,"font":{"size":14},"buttons":[{"label":"Show all","method":"restyle","args":["opacity",[1,1,1,1]]},{"label":"Advanced","method":"restyle","args":["opacity",[1,0.12,0.12,0.12]]},{"label":"Intermediate","method":"restyle","args":["opacity",[0.12,1,0.12,0.12]]},{"label":"Elementary","method":"restyle","args":["opacity",[0.12,0.12,1,0.12]]},{"label":"Beginner","method":"restyle","args":["opacity",[0.12,0.12,0.12,1]]}]}],"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displayModeBar":false},"data":[{"x":["1000","2000","3000","4000","5000"],"y":[29.785714285714285,29.270833333333332,28.836309523809526,27.904761904761905,26.532738095238095],"type":"scatter","mode":"lines+markers","name":"Advanced","line":{"color":"#0D0887","width":3},"marker":{"color":"#0D0887","size":11,"symbol":"circle","line":{"color":"rgba(31,119,180,1)"}},"hovertemplate":["<b>Advanced profile<\/b><br>1000 level<br>Average: 29.8 of 30 words (99%)<extra><\/extra>","<b>Advanced profile<\/b><br>2000 level<br>Average: 29.3 of 30 words (98%)<extra><\/extra>","<b>Advanced profile<\/b><br>3000 level<br>Average: 28.8 of 30 words (96%)<extra><\/extra>","<b>Advanced profile<\/b><br>4000 level<br>Average: 27.9 of 30 words (93%)<extra><\/extra>","<b>Advanced profile<\/b><br>5000 level<br>Average: 26.5 of 30 words (88%)<extra><\/extra>"],"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["1000","2000","3000","4000","5000"],"y":[29.863636363636363,28.58080808080808,25.492424242424239,21.628787878787882,18.012626262626259],"type":"scatter","mode":"lines+markers","name":"Intermediate","line":{"color":"#7E03A8","width":3},"marker":{"color":"#7E03A8","size":11,"symbol":"square","line":{"color":"rgba(255,127,14,1)"}},"hovertemplate":["<b>Intermediate profile<\/b><br>1000 level<br>Average: 29.9 of 30 words (100%)<extra><\/extra>","<b>Intermediate profile<\/b><br>2000 level<br>Average: 28.6 of 30 words (95%)<extra><\/extra>","<b>Intermediate profile<\/b><br>3000 level<br>Average: 25.5 of 30 words (85%)<extra><\/extra>","<b>Intermediate profile<\/b><br>4000 level<br>Average: 21.6 of 30 words (72%)<extra><\/extra>","<b>Intermediate profile<\/b><br>5000 level<br>Average: 18 of 30 words (60%)<extra><\/extra>"],"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["1000","2000","3000","4000","5000"],"y":[28.74688796680498,24.755186721991699,19.248962655601666,15.363070539419089,11.755186721991702],"type":"scatter","mode":"lines+markers","name":"Elementary","line":{"color":"#CC4778","width":3},"marker":{"color":"#CC4778","size":11,"symbol":"triangle-up","line":{"color":"rgba(44,160,44,1)"}},"hovertemplate":["<b>Elementary profile<\/b><br>1000 level<br>Average: 28.7 of 30 words (96%)<extra><\/extra>","<b>Elementary profile<\/b><br>2000 level<br>Average: 24.8 of 30 words (83%)<extra><\/extra>","<b>Elementary profile<\/b><br>3000 level<br>Average: 19.2 of 30 words (64%)<extra><\/extra>","<b>Elementary profile<\/b><br>4000 level<br>Average: 15.4 of 30 words (51%)<extra><\/extra>","<b>Elementary profile<\/b><br>5000 level<br>Average: 11.8 of 30 words (39%)<extra><\/extra>"],"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["1000","2000","3000","4000","5000"],"y":[22.583916083916083,13.325174825174825,8.3636363636363651,7.0069930069930066,6.0979020979020984],"type":"scatter","mode":"lines+markers","name":"Beginner","line":{"color":"#F89540","width":3},"marker":{"color":"#F89540","size":11,"symbol":"diamond","line":{"color":"rgba(214,39,40,1)"}},"hovertemplate":["<b>Beginner profile<\/b><br>1000 level<br>Average: 22.6 of 30 words (75%)<extra><\/extra>","<b>Beginner profile<\/b><br>2000 level<br>Average: 13.3 of 30 words (44%)<extra><\/extra>","<b>Beginner profile<\/b><br>3000 level<br>Average: 8.4 of 30 words (28%)<extra><\/extra>","<b>Beginner profile<\/b><br>4000 level<br>Average: 7 of 30 words (23%)<extra><\/extra>","<b>Beginner profile<\/b><br>5000 level<br>Average: 6.1 of 30 words (20%)<extra><\/extra>"],"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p><em>Chart summary: The four profiles differ in where scores drop. Advanced learners stay high at every level, while Beginner learners drop sharply after the most common 1000 words.</em></p>
+<p>Each profile tells a different learning story:</p>
+<ul>
+<li><strong>Advanced</strong> (22% of learners) know almost every word tested. Even at the 5000 level, they still know about <strong>27 of 30</strong> words.</li>
+<li><strong>Intermediate</strong> (26%) know nearly all common words. Their scores then fall steadily to about <strong>18 of 30</strong> at the 5000 level.</li>
+<li><strong>Elementary</strong> (32%) start strong but drop soon after the first 1000 words. They reach about <strong>12 of 30</strong> at the 5000 level.</li>
+<li><strong>Beginner</strong> (19%) know about <strong>23 of 30</strong> of the most common words. Beyond that, their scores fall quickly, to about <strong>13 of 30</strong> at the 2000 level and about <strong>6</strong> at the 5000 level.</li>
+</ul>
+</section>
+<section id="the-same-education-level-very-different-vocabularies" class="level2">
+<h2 class="anchored" data-anchor-id="the-same-education-level-very-different-vocabularies">The same education level, very different vocabularies</h2>
+<p>If education fully decided a learner’s vocabulary, each education group would contain mostly one profile. University learners would all be Advanced, and learners below high school would all be Beginners.</p>
+<p>That is not what we found. Click a profile to see how it spreads across the three groups.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="htmlwidget-592fc5a6f81179c76e5c" style="width:100%;height:502px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-592fc5a6f81179c76e5c">{"x":{"visdat":{"7a7958dfb27e":["function () ","plotlyVisDat"],"7a79463f9bc7":["function () ","data"],"7a797a0c49d8":["function () ","data"],"7a793cc44281":["function () ","data"],"7a7978ea4251":["function () ","data"]},"cur_data":"7a7978ea4251","attrs":{"7a79463f9bc7":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"bar","orientation":"h","name":"Advanced","marker":{"color":"#0D0887","line":{"color":"white","width":1.5}},"text":{},"textposition":"inside","insidetextanchor":"middle","textfont":{"color":"white","size":15},"hovertemplate":{},"inherit":true},"7a797a0c49d8":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"bar","orientation":"h","name":"Intermediate","marker":{"color":"#7E03A8","line":{"color":"white","width":1.5}},"text":{},"textposition":"inside","insidetextanchor":"middle","textfont":{"color":"white","size":15},"hovertemplate":{},"inherit":true},"7a793cc44281":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"bar","orientation":"h","name":"Elementary","marker":{"color":"#CC4778","line":{"color":"white","width":1.5}},"text":{},"textposition":"inside","insidetextanchor":"middle","textfont":{"color":"white","size":15},"hovertemplate":{},"inherit":true},"7a7978ea4251":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"bar","orientation":"h","name":"Beginner","marker":{"color":"#F89540","line":{"color":"white","width":1.5}},"text":{},"textposition":"inside","insidetextanchor":"middle","textfont":{"color":"black","size":15},"hovertemplate":{},"inherit":true}},"layout":{"height":520,"margin":{"b":110,"l":10,"t":110,"r":20},"title":{"text":"<b>Every vocabulary profile appears at every education level<\/b>","x":0.5,"xanchor":"center","xref":"container","y":0.96999999999999997,"yanchor":"top"},"font":{"family":"Arial","size":15,"color":"#222222"},"barmode":"stack","xaxis":{"domain":[0,1],"automargin":true,"title":"Share of learners in each education group","range":[0,100],"ticksuffix":"%","dtick":20},"yaxis":{"domain":[0,1],"automargin":true,"title":"","categoryorder":"array","categoryarray":["University (n = 500)","High school (n = 500)","Below high school (n = 500)"],"type":"category"},"legend":{"orientation":"h","traceorder":"normal","x":0.5,"xanchor":"center","y":-0.32000000000000001,"yanchor":"top","itemclick":false,"itemdoubleclick":false,"title":{"text":"<b>Profile:<\/b> "}},"updatemenus":[{"type":"buttons","direction":"right","x":0.5,"xanchor":"center","y":1.03,"yanchor":"bottom","showactive":true,"font":{"size":14},"buttons":[{"label":"Show all","method":"restyle","args":[{"marker.color":["#0D0887","#7E03A8","#CC4778","#F89540"],"textfont.color":["white","white","white","black"]}]},{"label":"Advanced","method":"restyle","args":[{"marker.color":["#0D0887","#D9D9D9","#D9D9D9","#D9D9D9"],"textfont.color":["white","#666666","#666666","#666666"]}]},{"label":"Intermediate","method":"restyle","args":[{"marker.color":["#D9D9D9","#7E03A8","#D9D9D9","#D9D9D9"],"textfont.color":["#666666","white","#666666","#666666"]}]},{"label":"Elementary","method":"restyle","args":[{"marker.color":["#D9D9D9","#D9D9D9","#CC4778","#D9D9D9"],"textfont.color":["#666666","#666666","white","#666666"]}]},{"label":"Beginner","method":"restyle","args":[{"marker.color":["#D9D9D9","#D9D9D9","#D9D9D9","#F89540"],"textfont.color":["#666666","#666666","#666666","black"]}]}]}],"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displayModeBar":false},"data":[{"x":[9.5999999999999996,19.199999999999999,38.399999999999999],"y":["Below high school (n = 500)","High school (n = 500)","University (n = 500)"],"type":"bar","orientation":"h","name":"Advanced","marker":{"color":"#0D0887","line":{"color":"white","width":1.5}},"text":["10%","19%","38%"],"textposition":["inside","inside","inside"],"insidetextanchor":"middle","textfont":{"color":"white","size":15},"hovertemplate":["<b>Below high school<\/b><br>Advanced profile: 48 of 500 learners (9.6%)<extra><\/extra>","<b>High school<\/b><br>Advanced profile: 96 of 500 learners (19.2%)<extra><\/extra>","<b>University<\/b><br>Advanced profile: 192 of 500 learners (38.4%)<extra><\/extra>"],"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[15,33.200000000000003,31],"y":["Below high school (n = 500)","High school (n = 500)","University (n = 500)"],"type":"bar","orientation":"h","name":"Intermediate","marker":{"color":"#7E03A8","line":{"color":"white","width":1.5}},"text":["15%","33%","31%"],"textposition":["inside","inside","inside"],"insidetextanchor":"middle","textfont":{"color":"white","size":15},"hovertemplate":["<b>Below high school<\/b><br>Intermediate profile: 75 of 500 learners (15%)<extra><\/extra>","<b>High school<\/b><br>Intermediate profile: 166 of 500 learners (33.2%)<extra><\/extra>","<b>University<\/b><br>Intermediate profile: 155 of 500 learners (31%)<extra><\/extra>"],"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[35.199999999999996,39,22.199999999999999],"y":["Below high school (n = 500)","High school (n = 500)","University (n = 500)"],"type":"bar","orientation":"h","name":"Elementary","marker":{"color":"#CC4778","line":{"color":"white","width":1.5}},"text":["35%","39%","22%"],"textposition":["inside","inside","inside"],"insidetextanchor":"middle","textfont":{"color":"white","size":15},"hovertemplate":["<b>Below high school<\/b><br>Elementary profile: 176 of 500 learners (35.2%)<extra><\/extra>","<b>High school<\/b><br>Elementary profile: 195 of 500 learners (39%)<extra><\/extra>","<b>University<\/b><br>Elementary profile: 111 of 500 learners (22.2%)<extra><\/extra>"],"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[40.200000000000003,8.5999999999999996,8.4000000000000004],"y":["Below high school (n = 500)","High school (n = 500)","University (n = 500)"],"type":"bar","orientation":"h","name":"Beginner","marker":{"color":"#F89540","line":{"color":"white","width":1.5}},"text":["40%","9%","8%"],"textposition":["inside","inside","inside"],"insidetextanchor":"middle","textfont":{"color":"black","size":15},"hovertemplate":["<b>Below high school<\/b><br>Beginner profile: 201 of 500 learners (40.2%)<extra><\/extra>","<b>High school<\/b><br>Beginner profile: 43 of 500 learners (8.6%)<extra><\/extra>","<b>University<\/b><br>Beginner profile: 42 of 500 learners (8.4%)<extra><\/extra>"],"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p><em>Chart summary: All four profiles appear in all three education groups. The Advanced share is larger in groups with more education, but no group consists of a single profile.</em></p>
+<p>Learners at the same educational level can have very different vocabulary profiles. At university, for example, 38% of learners are in the Advanced profile, but about 30% are still in the Elementary or Beginner profiles. The same variation appears below high school: while 40% are Beginners, about 25% reach the Intermediate or Advanced profiles.</p>
+<p>So, although more advanced profiles are more common at higher educational levels, education alone does not tell us what an individual learner’s vocabulary knowledge looks like.</p>
+</section>
+<section id="what-this-means" class="level2">
+<h2 class="anchored" data-anchor-id="what-this-means">What this means</h2>
+<p>A learner’s education level gives only a <strong>rough guide</strong> to their English vocabulary. Two learners with the same schooling can know very different sets of words.</p>
+<p>For teachers, this has a practical message. Education level alone cannot tell you which words a learner still needs. A short <strong>vocabulary test</strong> can, because it shows exactly where each learner’s knowledge starts to drop.</p>
+</section>
+<section id="data-source-note" class="level2">
+<h2 class="anchored" data-anchor-id="data-source-note">Data Source Note</h2>
+<p>This analysis uses a subset of the data from my master’s thesis.</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
